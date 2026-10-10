@@ -1,0 +1,3 @@
+# tpk-ar is pure Python but only publishes a source distribution.
+setuptools==75.6.0
+wheel==0.45.1

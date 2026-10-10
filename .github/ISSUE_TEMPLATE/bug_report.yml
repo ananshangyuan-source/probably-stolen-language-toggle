@@ -1,0 +1,35 @@
+name: Bug report / 问题反馈
+description: Report installation or language switching problems / 安装或切换问题
+title: "[Bug] "
+body:
+  - type: markdown
+    attributes:
+      value: "请勿上传游戏DLL、语言表、完整存档或完整日志。Only share necessary error lines and remove personal paths."
+  - type: input
+    id: game-build
+    attributes:
+      label: Game BuildID / 游戏构建
+      placeholder: "Demo 25382790"
+    validations:
+      required: true
+  - type: input
+    id: mod-version
+    attributes:
+      label: MOD version / 版本
+      placeholder: "1.0.3"
+    validations:
+      required: true
+  - type: input
+    id: system
+    attributes:
+      label: Windows version and other MODs / 系统与其他MOD
+  - type: textarea
+    id: reproduction
+    attributes:
+      label: Steps, affected screen, expected and actual behavior / 复现步骤
+    validations:
+      required: true
+  - type: textarea
+    id: error
+    attributes:
+      label: Relevant error lines only / 必要错误信息

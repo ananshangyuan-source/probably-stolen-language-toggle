@@ -1,0 +1,35 @@
+name: Publish a tagged release
+on:
+  push:
+    tags:
+      - 'v*'
+permissions:
+  contents: read
+jobs:
+  release:
+    runs-on: windows-latest
+    permissions:
+      contents: write
+    steps:
+      - uses: actions/checkout@v4
+      - name: Match tag to packaged version
+        shell: powershell
+        run: |
+          $version = (Get-Content dependencies.json -Raw | ConvertFrom-Json).plugin.version
+          if ($env:GITHUB_REF_NAME -ne "v$version") { throw 'Tag and plugin version do not match.' }
+      - name: Verify and package
+        shell: powershell
+        run: |
+          .\scripts\Verify-Package.ps1
+          .\tests\Test-Lifecycle.ps1
+          python -m unittest discover -s tests -p "test_*.py"
+          if ($LASTEXITCODE -ne 0) { throw 'Table extraction tests failed.' }
+          .\scripts\Package.ps1
+      - name: Create release with source and checksum
+        shell: powershell
+        env:
+          GH_TOKEN: ${{ github.token }}
+        run: |
+          $assets = @(Get-ChildItem .local-only/releases -File | ForEach-Object { $_.FullName })
+          gh release create $env:GITHUB_REF_NAME @assets --title "Q Language Toggle $env:GITHUB_REF_NAME" --notes-file CHANGELOG.md --verify-tag
+          if ($LASTEXITCODE -ne 0) { throw 'GitHub release upload failed.' }

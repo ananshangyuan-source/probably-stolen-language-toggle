@@ -1,0 +1,14 @@
+.local-only/
+.runtime*/
+.installation*.json
+*.log
+*.tmp
+__pycache__/
+language-pairs.json
+interop/
+analysis/
+bin/
+obj/
+.env
+.env.*
+!.env.example

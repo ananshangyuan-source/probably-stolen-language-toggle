@@ -1,0 +1,27 @@
+name: Check public package
+on:
+  push:
+  pull_request:
+permissions:
+  contents: read
+jobs:
+  windows:
+    runs-on: windows-latest
+    steps:
+      - uses: actions/checkout@v4
+      - name: Check package and script syntax
+        shell: powershell
+        run: .\scripts\Verify-Package.ps1
+      - name: Verify installer lifecycle in isolation
+        shell: powershell
+        run: .\tests\Test-Lifecycle.ps1
+      - name: Verify local table extraction lifecycle
+        shell: powershell
+        run: python -m unittest discover -s tests -p "test_*.py"
+      - name: Create release package
+        shell: powershell
+        run: .\scripts\Package.ps1
+      - uses: actions/upload-artifact@v4
+        with:
+          name: Windows-x64-package
+          path: .local-only/releases/*

@@ -1,0 +1,22 @@
+{
+  "bepinex": {
+    "version": "6.0.0-be.788+5b766a3",
+    "url": "https://builds.bepinex.dev/projects/bepinex_be/788/BepInEx-Unity.IL2CPP-win-x64-6.0.0-be.788%2B5b766a3.zip",
+    "sha256": "f4cc496bd098a0df4164b81e3737297707f13a47c2478dba2f60eefab784817a"
+  },
+  "python": {
+    "version": "3.12.15+20261003",
+    "archiveName": "python.tar.gz",
+    "url": "https://github.com/astral-sh/python-build-standalone/releases/download/20261003/cpython-3.12.15%2B20261003-x86_64-pc-windows-msvc-install_only_stripped.tar.gz",
+    "sha256": "6fba7f2ae506facf41d457ea8293c7497910a675c69a4e954875169410a50402"
+  },
+  "uv": {
+    "version": "0.12.23",
+    "url": "https://github.com/astral-sh/uv/releases/download/0.12.23/uv-x86_64-pc-windows-msvc.zip",
+    "sha256": "75d05de6762778c31ee183398de7dd15093fad0ed90b1f236d8205ea5ec00c90"
+  },
+  "plugin": {
+    "version": "1.0.3",
+    "sha256": "2cbf7db4309df8ce92950e54ea33c87cf50c14dc2fe6c7ca7c51b4d30c63ebda"
+  }
+}
